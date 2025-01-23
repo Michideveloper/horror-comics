@@ -1,0 +1,397 @@
+:root {
+    /* Colores principales */
+    --bg-dark: #121212;
+    --bg-darker: #0a0a0a;
+    --bg-light: #1e1e1e;
+    --text-light: #ffffff;
+    --text-dim: #a0a0a0;
+    
+    /* Colores temáticos */
+    --horror-primary: #ff3333;
+    --horror-secondary: #800000;
+    --comics-primary: #4CAF50;
+    --comics-secondary: #2E7D32;
+    
+    /* Espaciado */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    
+    /* Fuentes temáticas */
+    --font-horror-title: 'Metal Mania', cursive;
+    --font-horror-text: 'Eater', cursive;
+    --font-comics-title: 'Bangers', cursive;
+    --font-comics-text: 'Comic Neue', cursive;
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* Layout principal */
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to right, var(--bg-darker), var(--bg-dark));
+}
+
+/* Navbar */
+.navbar {
+    width: 310px;
+    background: var(--bg-darker);
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Secciones de navegación */
+.nav-section {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.nav-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Títulos de sección */
+.nav-title {
+    font-size: 1.5rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+    transition: var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+}
+
+.horror-title {
+    color: var(--horror-primary);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+    font-family: 'Nosifer', cursive;
+}
+
+.comics-title {
+    color: var(--comics-primary);
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    font-family: var(--font-comics-title);
+}
+
+/* Enlaces de navegación */
+.nav-links {
+    list-style: none;
+    margin-left: var(--spacing-md);
+}
+
+.nav-links li {
+    margin: var(--spacing-xs) 0;
+    border-radius: 6px;
+    transition: var(--transition-fast);
+}
+
+.nav-links a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    border-radius: 6px;
+}
+
+
+.horror-links li:hover {
+    background: rgba(255, 51, 51, 0.1);
+}
+
+.horror-links a:hover {
+    color: var(--horror-primary);
+    transform: translateX(var(--spacing-xs));
+    font-family: 'Creepster', cursive;
+    letter-spacing: 1px;
+}
+
+
+.comics-links li:hover {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.comics-links a:hover {
+    color: var(--comics-primary);
+    transform: translateX(var(--spacing-xs));
+    font-family: 'Permanent Marker', cursive;
+}
+
+
+.content-container {
+    flex: 1;
+    margin-left: 280px;
+    padding: var(--spacing-lg);
+}
+
+
+article {
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+article h3 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-light);
+}
+
+article img {
+    width: 100%;
+    border-radius: 8px;
+    margin: var(--spacing-md) 0;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+}
+
+article img:hover {
+    transform: scale(1.02);
+}
+
+article p {
+    color: var(--text-dim);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Botón volver arriba */
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-darker);
+    color: var(--text-dim);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: var(--transition-normal);
+    margin-top: var(--spacing-md);
+}
+
+.horror-section .back-to-top:hover {
+    background: var(--horror-secondary);
+    color: var(--text-light);
+}
+
+.comics-section .back-to-top:hover {
+    background: var(--comics-secondary);
+    color: var(--text-light);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.horror-section h3 {
+    font-family: var(--font-horror-title);
+    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.horror-section p {
+    font-family: 'Opacity One', cursive;
+    letter-spacing: 0.5px;
+}
+
+.comics-section h3 {
+    font-family: var(--font-comics-title);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.comics-section p {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.horror-section p,
+.comics-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.horror-section h3,
+.comics-section h3 {
+    margin-bottom: var(--spacing-lg);
+    font-size: 2.5rem;
+}
+
+
+.horror-links li a {
+    font-family: 'Metal Mania', cursive;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.2);
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.horror-title {
+    font-family: 'Nosifer', cursive;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.comics-links li a {
+    font-family: 'Bangers', cursive;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.comics-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.horror-links li a:hover {
+    color: var(--horror-primary);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+    transform: translateX(var(--spacing-xs)) scale(1.05);
+}
+
+.comics-links li a:hover {
+    color: var(--comics-primary);
+    transform: translateX(var(--spacing-xs)) scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .layout-container {
+        flex-direction: column;
+    }
+
+    .navbar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: var(--spacing-sm);
+    }
+
+    .content-container {
+        margin-left: 0;
+        padding: var(--spacing-md);
+    }
+
+    article {
+        padding: var(--spacing-md);
+    }
+
+    .nav-title {
+        font-size: 1.2rem;
+    }
+
+    .horror-section p,
+    .comics-section p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .horror-section h3,
+    .comics-section h3 {
+        font-size: 2rem;
+    }
+
+    .horror-links li a,
+    .comics-links li a {
+        font-size: 1.1rem;
+    }
+
+    .horror-title,
+    .comics-title {
+        font-size: 1.5rem;
+    }
+}
+
+
+footer {
+    background: var(--bg-darker);
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+footer p {
+    color: var(--text-dim);
+    margin: var(--spacing-sm) 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: var(--transition-normal);
+}
+
+footer p:hover {
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 768px) {
+    footer {
+        margin: var(--spacing-lg) calc(var(--spacing-md) * -1);
+        border-radius: 0;
+    }
+} 
