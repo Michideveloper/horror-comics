@@ -12,6 +12,11 @@
 <body>
     <div class="layout-container">
         <nav class="navbar">
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
             <div class="nav-container">
                 <div class="nav-section">
                     <h2 class="nav-title horror-title">
@@ -149,5 +154,21 @@
             </footer>
         </main>
     </div>
+    <script>
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navContainer = document.querySelector('.nav-container');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navContainer.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navContainer.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
